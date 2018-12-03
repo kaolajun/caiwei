@@ -20,6 +20,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api project(':yuxue-ec')
-    annotationProcessor project(':yuxue-compiler')
+    api project(':Yuxue-ec')
+    annotationProcessor project(':Yuxue-compiler')
 }

@@ -26,5 +26,5 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api project(':yuxue-core')
+    api project(':Yuxue-core')
 }
