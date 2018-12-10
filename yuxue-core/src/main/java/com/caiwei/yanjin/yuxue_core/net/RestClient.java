@@ -9,6 +9,7 @@ import com.caiwei.yanjin.yuxue_core.net.callback.IFailure;
 import com.caiwei.yanjin.yuxue_core.net.callback.IRequest;
 import com.caiwei.yanjin.yuxue_core.net.callback.ISuccess;
 import com.caiwei.yanjin.yuxue_core.net.callback.RequestCallbacks;
+import com.caiwei.yanjin.yuxue_core.net.download.DownloadHandler;
 import com.caiwei.yanjin.yuxue_core.ui.LoaderStyle;
 import com.caiwei.yanjin.yuxue_core.ui.YuxueLoader;
 
@@ -40,6 +41,10 @@ public class RestClient {
     private final Context CONTEXT;
     //用于文件上传
     private final File FILE;
+    //用于文件下载的地址、后缀名、完整的文件名。一般文件名和前面两个不会都设置
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
 
     public RestClient(String url
             , WeakHashMap<String, Object> params
@@ -50,7 +55,10 @@ public class RestClient {
             , IFailure failure
             ,LoaderStyle loaderStyle
             ,Context context
-            ,File file) {
+            ,File file
+            ,String downloadDir
+            ,String extension
+            ,String name) {
         this.URL = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -61,6 +69,9 @@ public class RestClient {
         this.FAILURE = failure;
         this.LOADER_STYLE = loaderStyle;
         this.CONTEXT = context;
+        this.DOWNLOAD_DIR = downloadDir;
+        this.NAME = name;
+        this.EXTENSION = extension;
     }
 
     public static RestClientBuilder builder(){
@@ -145,5 +156,10 @@ public class RestClient {
 
     public final void delete(){
         request(HttpMethod.DELETE);
+    }
+
+    public final void download(){
+        new DownloadHandler(URL,REQUEST,SUCCESS,ERROR,FAILURE
+                ,DOWNLOAD_DIR,EXTENSION,NAME).handleDownload();
     }
 }

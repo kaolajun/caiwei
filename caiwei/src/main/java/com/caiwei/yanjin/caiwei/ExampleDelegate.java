@@ -33,7 +33,7 @@ public class ExampleDelegate extends YuxueDelegate {
                 .params("","")
                 .success(new ISuccess() {
                     @Override
-                    public void OnSuccess(String response) {
+                    public void onSuccess(String response) {
                         Toast.makeText(getContext(),response,Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -45,7 +45,7 @@ public class ExampleDelegate extends YuxueDelegate {
                 })
                 .failure(new IFailure() {
                     @Override
-                    public void OnFailure() {
+                    public void onFailure() {
 
                     }
                 }).build()

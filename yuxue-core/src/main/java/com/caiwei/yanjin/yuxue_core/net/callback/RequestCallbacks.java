@@ -2,13 +2,10 @@ package com.caiwei.yanjin.yuxue_core.net.callback;
 
 import android.os.Handler;
 
-import com.caiwei.yanjin.yuxue_core.app.Yuxue;
 import com.caiwei.yanjin.yuxue_core.ui.LoaderStyle;
 import com.caiwei.yanjin.yuxue_core.ui.YuxueLoader;
 
 
-import me.yokeyword.fragmentation.SupportActivity;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,7 +33,7 @@ public class RequestCallbacks implements Callback<String>{
         if (response.isSuccessful()){
             if (call.isExecuted()){
                 if (SUCCESS != null){
-                    SUCCESS.OnSuccess(response.body());
+                    SUCCESS.onSuccess(response.body());
                 }
             }
         }else {
@@ -50,7 +47,7 @@ public class RequestCallbacks implements Callback<String>{
     @Override
     public void onFailure(Call<String> call, Throwable t) {
         if (FAILURE != null){
-            FAILURE.OnFailure();
+            FAILURE.onFailure();
         }
         if (REQUEST != null){
             REQUEST.onRequestEnd();
