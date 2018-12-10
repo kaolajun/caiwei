@@ -11,8 +11,11 @@ public final class Yuxue {
         return Configurator.getInstance();
     }
 
-    private static WeakHashMap<String,Object> getConfigurations(){
+    public static WeakHashMap<String,Object> getConfigurations(){
         return Configurator.getInstance().getYuxueConfigs();
     }
 
+    public static Context getApplication(){
+        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
+    }
 }

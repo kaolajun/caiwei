@@ -13,4 +13,5 @@ public class MainActivity extends ProxyActivity {
         Log.d("设置了根fragment","Y");
         return new ExampleDelegate();
     }
+
 }
